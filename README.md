@@ -19,8 +19,8 @@ git clone https://github.com/seu-usuario/nome-do-projeto.git
 ### 2. Instale as dependências
 Entre na pasta do projeto e instale as dependências necessárias. Você pode usar um ambiente virtual (como venv) ou simplesmente instalar globalmente:
 
-bash
-Copiar código
+bash \n
+Copiar código <br>
 pip install -r requirements.txt
 
 ### 3. Prepare o modelo de recibo
@@ -28,8 +28,8 @@ Para utilizar o gerador, você precisa criar uma pasta chamada PDF_Modelo na rai
 
 bash
 Copiar código
-app_cad_diarista/
-├── PDF_Modelo/
+app_cad_diarista/ \n
+├── PDF_Modelo/ \n
 │   └── modelo_de_recibo.pdf
 
 ### 4. Formato do PDF
