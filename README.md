@@ -12,14 +12,14 @@ Para usar o projeto corretamente, siga as etapas abaixo:
 ### 1. Clone o repositório
 Primeiramente, faça o clone deste repositório para sua máquina local:
 
-bash
-Copiar código
+bash <br>
+Copiar código <br>
 git clone https://github.com/seu-usuario/nome-do-projeto.git
 
 ### 2. Instale as dependências
 Entre na pasta do projeto e instale as dependências necessárias. Você pode usar um ambiente virtual (como venv) ou simplesmente instalar globalmente:
 
-bash \n
+bash <br>
 Copiar código <br>
 pip install -r requirements.txt
 
@@ -28,8 +28,8 @@ Para utilizar o gerador, você precisa criar uma pasta chamada PDF_Modelo na rai
 
 bash
 Copiar código
-app_cad_diarista/ \n
-├── PDF_Modelo/ \n
+app_cad_diarista/ <br>
+├── PDF_Modelo/ <br>
 │   └── modelo_de_recibo.pdf
 
 ### 4. Formato do PDF
@@ -42,8 +42,8 @@ Aqui está uma imagem do trecho de código que identifica e preenche os campos n
 ### 5. Execução do Projeto
 Depois que o modelo de recibo estiver na pasta correta, você pode executar o script para gerar os recibos. Dependendo de como o script foi configurado, você pode simplesmente rodar o comando abaixo:
 
-bash
-Copiar código
+bash <br>
+Copiar código <br>
  python .\manage.py runserver
 O script irá preencher o modelo de recibo com as informações definidas no código e salvará o recibo preenchido.
 
