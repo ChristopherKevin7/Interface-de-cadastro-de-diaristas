@@ -1,0 +1,10 @@
+{% extends "diaristas/base.html" %}
+{% block conteudo%}
+    <div style="text-align: center" class="container">
+        <h1>Diarista excluido com sucesso<h1>
+        <form action="{% url 'listagem_diaristas' %}">
+            {% csrf_token %}
+            <button class="button_submit_excluir" type="submit">Voltar</button>
+        </form>
+    </div>
+{%endblock%}

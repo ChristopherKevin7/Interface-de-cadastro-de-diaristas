@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="style.css">
+{% extends "diaristas/base.html" %}
+{% block conteudo%}
+<div class="container" style="background-color: #C6CBDF;" width="100%" height="100%">
+    <h2>Diaristas Cadastrados:<h2>
+            <table class="table table-bordered table-striped custom-table">
+                <tr style="background-color: #757989;">
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Setor</th>
+                    <th>RG</th>
+                    <th>CPF</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>PIX</th>
+                    <th></th>
+                </tr>
+                {% for diarista in diaristas %}
+                <tr>
+                    <td>{{diarista.id_diarista}}</td>
+                    <td>{{diarista.nome}}</td>
+                    <td>
+                        {% if diarista.setor == 1 %}
+                        Expedição
+                        {% elif diarista.setor == 2 %}
+                        Cadastro
+                        {% elif diarista.setor == 3 %}
+                        Desing
+                        {% elif diarista.setor == 4 %}
+                        Conteúdo
+                        {% elif diarista.setor == 5 %}
+                        Auxiliar de e-commerce
+                        {% else %}
+                        Setor Desconhecido
+                        {% endif %}
+                    </td>
+                    <td>{{diarista.rg}}</td>
+                    <td>{{diarista.cpf}}</td>
+                    <td>{{diarista.email}}</td>
+                    <td>{{diarista.telefone}}</td>
+                    <td>{{diarista.pix}}</td>
+                    <td>
+                        <form action="{% url 'editar' diarista.id_diarista %}">
+                            {% csrf_token %}
+                            <button class="button_submit_tab" type="submit">Editar</button>
+                        </form>
+                        <form onsubmit="return confirm('Tem certeza que deseja excluir este diarista?');"
+                            action="{% url 'excluir_item' diarista.id_diarista %}" method="post">
+                            {% csrf_token %}
+                            <button class="button_submit_tab" type="submit">Excluir</button>
+                        </form>
+                        <form action="{% url 'recibo' diarista.id_diarista %}">
+                            {% csrf_token %}
+                            <button class="button_submit_tab" type="submit">Recibo</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+</div>
+{%endblock%}

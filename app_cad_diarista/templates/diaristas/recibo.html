@@ -1,0 +1,112 @@
+{% extends "diaristas/base.html" %}
+{% block conteudo%}
+<form method="post" id="emitir-recibo-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="text-align: center" class="container">
+        <h1>Emitir recibo do diarista: {{ diarista.id_diarista }} {{ diarista.nome }}</h1>
+        <center>
+            <div class="inputs_cad">
+                <div class="inputs">
+                    <label for="empresa_sel">Empresa:</label>
+                    <select name="empresa_sel" id="empresa_sel" required>
+                        {% for empresa in empresas %}
+                        <option value="{{ empresa.id_empresa }}">{{ empresa.nome_empresa }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="inputs">
+                    <label for="data">Data de emissão</label>
+                    <input type="date" name="data" id="data">
+                </div>
+                <div class="inputs">
+                    <label for="hor_ent">Horário entrada:</label>
+                    <input type="time" name="hor_ent" id="hor_ent" required>
+                </div>
+                <div class="inputs">
+                    <label for="hor_alm_ini">Horário almoço:</label>
+                    <input type="time" name="hor_alm_ini" id="hor_alm_ini" required>
+                </div>
+                <div class="inputs">
+                    <label for="hor_alm_ret">Horário retorno:</label>
+                    <input type="time" name="hor_alm_ret" id="hor_alm_ret" required>
+                </div>
+                <div class="inputs">
+                    <label for="hor_saida">Horário saida:</label>
+                    <input type="time" name="hor_saida" id="hor_saida" required>
+                </div>
+            </div>
+
+            <button class="form-control-sm button_submit" type="submit">Enviar</button>
+        </center>
+
+    </div>
+</form>
+
+<script>
+    document.getElementById("emitir-recibo-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        var diaristaId = "{{ diarista.id_diarista }}"; // Obtém o ID do diarista
+        var empresaId = document.getElementById("empresa_sel").value; // Obtém o ID da empresa selecionada
+
+        // Cria um objeto FormData para enviar os dados do formulário
+        var formData = new FormData();
+        formData.append('diarista_id', diaristaId);
+        formData.append('empresa_id', empresaId);
+
+        // Adicione os valores de hora ao FormData
+        formData.append('data', document.getElementById("data").value);
+        formData.append('hor_ent', document.getElementById("hor_ent").value);
+        formData.append('hor_alm_ini', document.getElementById("hor_alm_ini").value);
+        formData.append('hor_alm_ret', document.getElementById("hor_alm_ret").value);
+        formData.append('hor_saida', document.getElementById("hor_saida").value);
+
+        // Obtém o token CSRF do cookie
+        var csrftoken = getCookie('csrftoken');
+
+        // Constrói a URL para a view emitir_recibo
+        var url = "{% url 'emitir_recibo' diarista.id_diarista 0 %}".replace("0", empresaId);
+
+        console.log(formData)
+
+        // Envia o formulário como método POST com o token CSRF
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
+        }).then(response => response.json())  // Converta a resposta em JSON
+            .then(data => {
+                if (data.success) {
+                    // Se a resposta for bem-sucedida, redirecione para a nova página
+                    window.location.href = url;
+                } else {
+                    console.error('Erro na resposta do servidor:', data);
+                }
+            }).catch(error => {
+                // Trate o erro, se necessário
+                console.error(error);
+            });
+    });
+
+    // Função para obter o valor do cookie CSRFToken
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
+<!-- Seu template diaristas/emitir_recibo.html -->
+
+
+{%endblock%}

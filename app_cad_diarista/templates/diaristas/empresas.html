@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="style.css">
+{% extends "diaristas/base.html" %}
+{% block conteudo%}
+<div class="container" style="background-color: #C6CBDF;" width="100%" height="100%">
+    <h2>Empresas Cadastradas:<h2>
+            <table class="table table-bordered table-striped custom-table">
+                <tr style="background-color: #757989;">
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Estado</th>
+                    <th>Cidade</th>
+                    <th>Bairro</th>
+                    <th>Rua</th>
+                    <th>Numero</th>
+                    <th>CEP</th>
+                    <th>CNPJ</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+                {% for empresa in empresas %}
+                <tr>
+                    <td>{{empresa.id_empresa}}</td>
+                    <td>{{empresa.nome_empresa}}</td>
+                    <td>{{empresa.estado}}</td>
+                    <td>{{empresa.cidade}}</td>
+                    <td>{{empresa.bairro}}</td>
+                    <td>{{empresa.rua}}</td>
+                    <td>{{empresa.numero}}</td>
+                    <td>{{empresa.cep}}</td>
+                    <td>{{empresa.cnpj}}</td>
+                    <td>{{empresa.email}}</td>
+                    <td>
+                        <form action="{% url 'editar_empresa' empresa.id_empresa %}">
+                            {% csrf_token %}
+                            <button class="button_submit_tab" type="submit">Editar</button>
+                        </form>
+                        <form onsubmit="return confirm('Tem certeza que deseja excluir esta empresa?');"
+                            action="{% url 'excluir_item_empresa' empresa.id_empresa %}" method="post">
+                            {% csrf_token %}
+                            <button class="button_submit_tab" type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+</div>
+{%endblock%}

@@ -1,0 +1,86 @@
+.custom-table td {
+    font-size: 14px; /* Ajuste o tamanho da fonte conforme necessário */
+}
+
+.custom-table td {
+    max-width: 200px; /* Ajuste a largura máxima conforme necessário */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+h1 {
+    font-family: 'DIN BLACK', sans-serif;
+}
+
+.inputs_cad {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #0f0f0f; /* Adiciona uma borda de 1px sólida cinza */
+    border-radius: 15px;
+    width: 500px;
+    padding: 20px; /* Adiciona preenchimento interno para separar os elementos da borda */
+    background-color: #D6D8E4;
+}
+
+.inputs_cad .inputs {
+    margin: 10px 0; /* Adiciona margem entre os elementos de entrada */
+}
+
+.inputs_cad label {
+    color: #051D6F;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+.inputs {
+    margin: 20px;
+}
+
+.select-custom {
+    font-size: 20px;
+}
+
+
+
+.button_submit {
+    margin-top: 20px; /* Ajusta a margem superior do botão */
+    background-color: #051D6F;
+    border-radius: 0;
+    border: 0;
+    color: #fff;
+    width: 100px;
+}
+
+.button_submit_tab{
+    margin-top: 10px; /* Ajusta a margem superior do botão */
+    background-color: #051D6F;
+    border-radius: 0;
+    border: 0;
+    color: #fff;
+    width: 80px;
+}
+.button_submit_excluir{
+    margin-top: 10px; /* Ajusta a margem superior do botão */
+    background-color: #051D6F;
+    border-radius: 0;
+    border: 0;
+    color: #fff;
+    width: 125px;
+}
+
+.navbar {
+    padding-top: 0 !important; 
+    padding-bottom: 0 !important;
+}
+
+.logo-nav {
+    margin: 0;
+    padding: 0;
+    margin-left: 15px;
+}
+
+.container-nav {
+    background-color:#C6CBDF;
+    width: 80px;
+}

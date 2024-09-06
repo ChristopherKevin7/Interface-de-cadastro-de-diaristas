@@ -1,0 +1,15 @@
+{% extends "diaristas/base.html" %}
+{% block conteudo%}
+{% csrf_token %}
+<div style="text-align: center" class="container">
+    <h1>Recibo do diarista {{diarista.id_diarista}} {{diarista.nome}} emitido em nome da empresa
+        {{empresa.nome_empresa}}<h1>
+            <center>
+                <form action="{% url 'listagem_diaristas' %}">
+                    {% csrf_token %}
+                    <button class="button_submit_excluir" type="submit">Voltar</button>
+                </form>
+            </center>
+</div>
+
+{%endblock%}

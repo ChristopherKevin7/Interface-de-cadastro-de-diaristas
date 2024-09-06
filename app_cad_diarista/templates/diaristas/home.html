@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="style.css">
+{% extends "diaristas/base.html" %}
+{% block conteudo%}
+<form action="{% url 'listagem_diaristas' %}" method="post">
+  {% csrf_token %}
+  <div style="text-align: center" class="container">
+    <h1>CADASTRO DE DIARISTAS</h1>
+    <center>
+      <div class="inputs_cad">
+        <div class="inputs">
+          <label for="nome">Nome:</label>
+          <input name="nome" id="nome" class="form-control-sm" type="text" required
+            placeholder="Informe o nome completo" maxlength="100">
+        </div>
+
+        <div class="inputs">
+          <label for="setor">Setor:</label>
+          <select name="setor" id="setor" required>
+            <option value="1">Expedição</option>
+            <option value="2">Cadastro</option>
+            <option value="3">Desing</option>
+            <option value="4">Conteúdo</option>
+            <option value="5">Auxiliar de e-commerce</option>
+
+            <!-- Adicione outras opções conforme necessário -->
+          </select>
+        </div>
+
+        <div class="inputs">
+          <label for="rg">RG:</label>
+          <input name="rg" id="rg" class="form-control-sm" type="text" required placeholder="Informe o RG"
+            maxlength="12">
+        </div>
+        <div class="inputs">
+          <label for="cpf">CPF:</label>
+          <input name="cpf" id="cpf" class="form-control-sm" type="text" required placeholder="Informe o CPF"
+            maxlength="14">
+        </div>
+        <div class="inputs">
+          <label for="telefone">Telefone:</label>
+          <input name="telefone" id="telefone" class="form-control-sm" type="text" placeholder="Informe o telefone"
+            maxlength="14">
+        </div>
+        <div class="inputs">
+          <label for="email">Email:</label>
+          <input name="email" id="email" class="form-control-sm" type="text" placeholder="Informe o email"
+            maxlength="100">
+        </div>
+        <div class="inputs">
+          <label for="pix">PIX:</label>
+          <input name="pix" id="pix" class="form-control-sm" type="text" required placeholder="Informe a chave PIX"
+            maxlength="100">
+        </div>
+      </div>
+
+
+      <button class="form-control-sm button_submit" type="submit">Enviar</button>
+    </center>
+  </div>
+</form>
+<script>
+  document.getElementById('cpf').addEventListener('input', function (e) {
+    var value = e.target.value;
+    var cpfPattern = value.replace(/\D/g, '') // Remove qualquer coisa que não seja número
+      .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona ponto após o terceiro dígito
+      .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona ponto após o sexto dígito
+      .replace(/(\d{3})(\d)/, '$1-$2') // Adiciona traço após o nono dígito
+      .replace(/(-\d{2})\d+?$/, '$1'); // Impede entrada de mais de 11 dígitos
+    e.target.value = cpfPattern;
+  });
+
+  document.getElementById('rg').addEventListener('input', function (e) {
+    var value = e.target.value;
+    var rgPattern = value.replace(/\D/g, '') // Remove qualquer coisa que não seja número
+      .replace(/(\d{2})(\d)/, '$1.$2') // Adiciona ponto após o terceiro dígito
+      .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona ponto após o sexto dígito
+      .replace(/(\d{3})(\d)/, '$1-$2') // Adiciona traço após o nono dígito
+      .replace(/(-\d{1})\d+?$/, '$1'); // Impede entrada de mais de 11 dígitos
+    e.target.value = rgPattern;
+  });
+
+  document.getElementById('telefone').addEventListener('input', function (e) {
+    var value = e.target.value;
+    var telefonePattern = value.replace(/\D/g, '') // Remove qualquer coisa que não seja número
+      .replace(/(\d{0})(\d)/, '$1($2') // Abre parenteses
+      .replace(/(\d{2})(\d)/, '$1)$2') // Fecha os parenteses
+      .replace(/(\d{5})(\d)/, '$1-$2') // Adciona um traço
+      .replace(/(-\d{4})\d+?$/, '$1'); // Impede entrada de mais de 11 dígitos
+    e.target.value = telefonePattern;
+  });
+</script>
+{%endblock%}

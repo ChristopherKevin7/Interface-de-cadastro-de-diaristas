@@ -1,0 +1,58 @@
+{% extends "diaristas/base.html" %}
+{% block conteudo%}
+<form action="{% url 'update' diarista.id_diarista %}" method="post">
+  {% csrf_token %}
+  <div style="text-align: center" class="container">
+    <h1>Editar diarista: {{diarista.id_diarista}} {{diarista.nome}}<h1>
+        <center>
+          <div class="inputs_cad">
+          <div class="inputs">
+            <label for="nome">Nome:</label>
+            <input name="nome" id="nome" class="form-control-sm" type="text" required
+              placeholder="Informe o nome completo" maxlength="100" value="{{ diarista.nome }}">
+          </div>
+          <div class="inputs">
+            <label for="setor">Setor:</label>
+            <select class="form-control-sm" name="setor" id="setor" required>
+              <option value="1" {% if diarista.setor == 1 %}selected{% endif %}>Expedição</option>
+              <option value="2" {% if diarista.setor == 2 %}selected{% endif %}>Cadastro</option>
+              <option value="3" {% if diarista.setor == 3 %}selected{% endif %}>Design</option>
+              <option value="4" {% if diarista.setor == 4 %}selected{% endif %}>Conteúdo</option>
+              <option value="5" {% if diarista.setor == 5 %}selected{% endif %}>Auxiliar de e-commerce</option>
+
+              <!-- Adicione outras opções conforme necessário -->
+            </select>
+          </div>
+          <div class="inputs">
+            <label for="rg">RG:</label>
+            <input name="rg" id="rg" class="form-control-sm" type="text" required placeholder="Informe o RG"
+              maxlength="12" value="{{ diarista.rg }}">
+          </div>
+          <div class="inputs">
+            <label for="cpf">CPF:</label>
+            <input name="cpf" id="cpf" class="form-control-sm" type="text" required placeholder="Informe o CPF"
+              maxlength="14" value="{{ diarista.cpf }}">
+          </div>
+          <div class="inputs">
+            <label for="email">Email:</label>
+            <input name="email" id="email" class="form-control-sm" type="text" required placeholder="Informe o email"
+              maxlength="100" value="{{ diarista.email }}">
+          </div>
+          <div class="inputs">
+            <label for="telefone">Telefone:</label>
+            <input name="telefone" id="telefone" class="form-control-sm" type="text" placeholder="Informe o telefone"
+              maxlength="11" value="{{ diarista.telefone }}">
+          </div>
+          <div class="inputs">
+            <label for="pix">PIX:</label>
+            <input name="pix" id="pix" class="form-control-sm" type="text" required placeholder="Informe a chave PIX"
+              maxlength="100" value="{{ diarista.pix }}">
+          </div>
+          <center>
+          <button class="form-control-sm button_submit" type="submit">Enviar</button>
+        </center>
+        </div>
+        </center>
+  </div>
+</form>
+{%endblock%}
