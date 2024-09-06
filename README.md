@@ -14,7 +14,7 @@ Primeiramente, faça o clone deste repositório para sua máquina local:
 
 bash <br>
 Copiar código <br>
-git clone https://github.com/seu-usuario/nome-do-projeto.git
+git clone https://github.com/ChristopherKevin7/Interface-de-cadastro-de-diaristas.git
 
 ### 2. Instale as dependências
 Entre na pasta do projeto e instale as dependências necessárias. Você pode usar um ambiente virtual (como venv) ou simplesmente instalar globalmente:
